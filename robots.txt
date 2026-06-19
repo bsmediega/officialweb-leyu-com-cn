@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bsmediega.github.io/officialweb-leyu-com-cn/sitemap.xml

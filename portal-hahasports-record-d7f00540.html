@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈哈体育 · 再次遇见</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            line-height: 1.6;
+            color: #1e1e2a;
+        }
+
+        /* 深色头图 —— 故事开场 */
+        .hero {
+            background: linear-gradient(145deg, #0b121f 0%, #1b263b 100%);
+            color: #e6edf5;
+            padding: 3.5rem 1.5rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #f1b24a;
+            margin: 1.2rem auto 0;
+            border-radius: 4px;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #b6c7db;
+            max-width: 600px;
+            margin: 0 auto 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero .story-start {
+            max-width: 640px;
+            margin: 1.5rem auto 0;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #d0dceb;
+        }
+
+        .hero .story-start a {
+            color: #f1c40f;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.2s;
+        }
+
+        .hero .story-start a:hover {
+            color: #f7dc6f;
+        }
+
+        /* 浅色正文区域 */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.25s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-card h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #1c2a44;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f1b24a;
+            padding-left: 1rem;
+        }
+
+        .section-card p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-card a {
+            color: #1e5a9b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .section-card a:hover {
+            color: #0d3b6f;
+        }
+
+        /* 特点列表 —— 强调色点缀 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .feature-list li {
+            background: #f7f9fc;
+            padding: 0.7rem 1rem 0.7rem 1.8rem;
+            border-radius: 30px;
+            position: relative;
+            font-size: 0.98rem;
+            color: #1f2a3e;
+        }
+
+        .feature-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0.8rem;
+            top: 0.7rem;
+            color: #f1b24a;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .action-note {
+            background: #faf5eb;
+            border-radius: 16px;
+            padding: 1.3rem 1.8rem;
+            margin: 1.5rem 0 0.8rem;
+            border: 1px solid #ede0cc;
+        }
+
+        .action-note p {
+            margin: 0.3rem 0;
+        }
+
+        /* 温和结尾 */
+        .ending-note {
+            text-align: center;
+            padding: 1.8rem 0.5rem 0.2rem;
+            border-top: 1px solid #dce3ec;
+            margin-top: 1.5rem;
+            color: #3a4a62;
+            font-size: 0.95rem;
+        }
+
+        .ending-note a {
+            color: #1e5a9b;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .ending-note a:hover {
+            color: #0b3b63;
+        }
+
+        .faq-mini {
+            background: #f2f5fa;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            margin-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1f2a3e;
+            padding: 0.3rem 0;
+        }
+
+        .faq-mini details p {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            color: #2b3c54;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .section-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .hero .story-start {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 · 开场短句 -->
+    <section class="hero">
+        <h1>哈哈体育</h1>
+        <p class="tagline">不只是站点，更是常来常新的地方</p>
+        <div class="story-start">
+            再次打开这个页面，像推开一扇熟悉的门。<br>
+            有些地方你收藏过，却不一定常常回去；但这里，值得你放进书签，隔段时间就来看一眼。<br>
+            你好，这里是 <a href="https://portal-hahasports.com">哈哈体育</a> —— 一个认真整理、持续更新的角落。
+        </div>
+    </section>
+
+    <!-- 浅色正文：承接段落 + 特点列表 + 场景提示 -->
+    <div class="content">
+
+        <!-- 承接段落：收藏与再访的意义 -->
+        <div class="section-card">
+            <h2>收藏，然后记得回来</h2>
+            <p>
+                我们常常收藏很多链接，但真正反复回看的并不多。对于 <strong>哈哈体育</strong> 来说，收藏不只是标记，更是一份信任：
+                你知道这里的内容会迭代，信息会更新，而访问的体验也会逐渐完善。把页面加入书签，就是给自己留一个常更新的窗口。
+            </p>
+            <p>
+                无论你是偶然发现，还是老朋友回归，每一次访问都能看到不一样的细节。从专题整理到赛事速览，从实用工具到社区观察，<a href="https://portal-hahasports.com">哈哈体育</a> 始终保持着平实、清晰的调性。
+            </p>
+        </div>
+
+        <!-- 特点列表：用卡片呈现亮点 -->
+        <div class="section-card">
+            <h2>几个让人愿意回头的理由</h2>
+            <ul class="feature-list">
+                <li>信息结构清晰，减少无效浏览</li>
+                <li>内容定期整理，不堆砌不重复</li>
+                <li>链接与导航直接，节省查找时间</li>
+                <li>页面风格低调，专注内容本身</li>
+                <li>无弹窗干扰，阅读体验顺畅</li>
+                <li>移动端友好，随时打开都方便</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                这些特点听起来简单，但持续做到就需要认真对待每一次更新。你可以在 <a href="https://portal-hahasports.com">哈哈体育</a> 里慢慢感受这种用心。
+            </p>
+        </div>
+
+        <!-- 场景提示：什么时候会想起这里 -->
+        <div class="section-card">
+            <h2>适合哪些时刻打开？</h2>
+            <p>
+                也许是周末的早晨，想看看最近有什么值得关注的动态；也许是在通勤路上，随手翻一翻整理好的摘要；又或者你只是想找一个干净、不嘈杂的页面，安安静静地浏览一会儿。<br>
+                <strong>哈哈体育</strong> 就是为这样的时刻准备的。它不追求喧哗，只希望你每次回来都能有所收获。
+            </p>
+            <div class="action-note">
+                <p>🔖 <strong>小建议：</strong> 把 <a href="https://portal-hahasports.com">哈哈体育</a> 添加到浏览器书签或主屏幕，下次想看时一步即达。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要风格（干净、有层次） -->
+        <div class="section-card">
+            <h2>一些你可能想问的</h2>
+            <div class="faq-mini">
+                <details>
+                    <summary>这里的内容会经常变吗？</summary>
+                    <p>会。站点会不定时更新板块和专题，但不会为了变化而变，每次调整都基于实用和清晰的原则。</p>
+                </details>
+                <details>
+                    <summary>我上次收藏的链接还有效吗？</summary>
+                    <p>核心页面长期有效。如果有关键调整，会在站内给出提示。你也可以直接访问 <a href="https://portal-hahasports.com">哈哈体育</a> 获取最新入口。</p>
+                </details>
+                <details>
+                    <summary>需要注册或登录才能看吗？</summary>
+                    <p>不需要。所有公开内容都可以直接访问，没有强制注册的步骤。</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- 温和结尾：持续关注 + 再次邀请 -->
+        <div class="ending-note">
+            <p>每一次回访，都是一次认真的重逢。</p>
+            <p style="margin-top: 0.4rem;">
+                把 <a href="https://portal-hahasports.com">哈哈体育</a> 放在收藏夹里，像保留一个安静的阅读角。<br>
+                下次想起时，你随时可以回来。
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #5b6f86;">
+                —— 持续整理 · 平实呈现 ——
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

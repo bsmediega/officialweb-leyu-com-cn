@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈哈体育 · 信息卡片导航</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+
+        body {
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+        .hero h1 span {
+            color: #60a5fa;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 640px;
+            margin: 0 auto;
+            color: #94a3b8;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* 用途卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid #60a5fa;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.06);
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3b82f6;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            margin-top: 0.6rem;
+        }
+
+        /* 适合人群区块 */
+        .audience-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .audience-left {
+            flex: 1 1 280px;
+        }
+        .audience-left h2 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        .audience-left p {
+            color: #475569;
+            margin-bottom: 0.8rem;
+        }
+        .audience-right {
+            flex: 1 1 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .person-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f8fafc;
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+        }
+        .person-item .emoji-badge {
+            background: #dbeafe;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .person-item span {
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .person-item small {
+            color: #64748b;
+            margin-left: 0.3rem;
+            font-weight: 400;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            margin-bottom: 3rem;
+        }
+        .link-paragraph h2 {
+            font-size: 1.5rem;
+            font-weight: 550;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+        }
+        .link-paragraph p {
+            color: #334155;
+            margin-bottom: 0.9rem;
+        }
+        .link-paragraph a {
+            color: #2563eb;
+            background: #eef2ff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .link-paragraph a:hover {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        /* FAQ 摘要（极简） */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            margin-bottom: 1.5rem;
+        }
+        .faq-mini h2 {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #e9edf2;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item strong {
+            display: block;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item p {
+            color: #475569;
+            font-size: 0.92rem;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            padding: 1.5rem 0 0.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .container { padding: 1.8rem 1rem 2.5rem; }
+            .card-grid { gap: 1.2rem; }
+            .audience-section, .link-paragraph, .faq-mini { padding: 1.5rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>⚡ <span>哈哈</span>体育 · 信息导航</h1>
+        <p>快速识别平台用途：运动资讯、赛事数据、社区交流与实用工具</p>
+    </header>
+
+    <main class="container">
+        <!-- 用途卡片：主视觉直接展示 -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>📊 赛事数据中心</h3>
+                <p>覆盖足球、篮球、网球等主流联赛，实时比分、历史统计与赛程一目了然。无需频繁刷新，数据同步流畅。</p>
+                <span class="tag">实时更新</span>
+            </div>
+            <div class="card">
+                <h3>📰 资讯专栏</h3>
+                <p>每日精选球队动态、转会传闻、赛事前瞻与深度复盘。内容由编辑团队整理，侧重信息准确。</p>
+                <span class="tag">每日更新</span>
+            </div>
+            <div class="card">
+                <h3>💬 球迷社区</h3>
+                <p>按联赛、球队或话题分区讨论，支持图文、投票与引用回复。营造理性、友好的交流环境。</p>
+                <span class="tag">开放讨论</span>
+            </div>
+            <div class="card">
+                <h3>🧰 实用工具箱</h3>
+                <p>包含赛程订阅、积分榜生成、球员对比、观赛日历等轻量工具，辅助日常看球与分析。</p>
+                <span class="tag">免费使用</span>
+            </div>
+        </div>
+
+        <!-- 适合人群（差异化卡片式列表） -->
+        <div class="audience-section">
+            <div class="audience-left">
+                <h2>👥 适合哪些人</h2>
+                <p>无论你是资深球迷还是偶尔看几场比赛，这里都能找到对应的内容与服务。以下三类用户反馈最多：</p>
+            </div>
+            <div class="audience-right">
+                <div class="person-item">
+                    <div class="emoji-badge">🏀</div>
+                    <span>赛事追踪型 <small>喜欢盯实时比分、积分变化</small></span>
+                </div>
+                <div class="person-item">
+                    <div class="emoji-badge">📋</div>
+                    <span>数据研究型 <small>常查历史交锋、球员赛季统计</small></span>
+                </div>
+                <div class="person-item">
+                    <div class="emoji-badge">🗣️</div>
+                    <span>社区参与型 <small>愿意聊球、分享观点、看热帖</small></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 -->
+        <div class="link-paragraph">
+            <h2>🔗 关于哈哈体育</h2>
+            <p>
+                如果你正在寻找一个信息集中、界面清爽的体育信息站，可以花几分钟了解一下 <a href="https://cn-haha.com">哈哈体育</a>。
+                它的结构偏向实用，没有过多装饰，首页直接陈列了比赛数据、分类资讯和社区入口。
+            </p>
+            <p>
+                很多用户把它作为看赛程、翻数据的第一站。日常使用中，你也会发现一些隐藏在二级页面的小工具，比如赛历导出、球员对比雷达图。
+                这类设计不是为了炫技，而是为了让信息查找更直接。如果你常看球或做赛事分析，<a href="https://cn-haha.com">哈哈体育</a> 值得加入收藏夹。
+            </p>
+            <p style="margin-bottom:0;">
+                另外，站内搜索功能支持球队、球员、赛事关键词，结果区分了资讯和数据，这一点对快速定位内容很有帮助。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 (轻量内容) -->
+        <div class="faq-mini">
+            <h2>❓ 常见疑问摘要</h2>
+            <div class="faq-item">
+                <strong>是否需要注册才能浏览？</strong>
+                <p>大部分内容（比分、资讯、工具）无需登录即可查看。只有参与社区发帖或收藏功能才需要简单注册。</p>
+            </div>
+            <div class="faq-item">
+                <strong>数据更新频率怎样？</strong>
+                <p>关键赛事数据接近实时同步，常规联赛延迟约30秒。赛后统计会在终场后10分钟内生成。</p>
+            </div>
+            <div class="faq-item">
+                <strong>移动端适配如何？</strong>
+                <p>页面采用响应式设计，手机浏览器和电脑访问布局自动调整。部分社区功能在微信浏览器内也能正常使用。</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            — 信息卡片页 · 内容仅供了解参考 —
+        </div>
+    </main>
+</body>
+</html>

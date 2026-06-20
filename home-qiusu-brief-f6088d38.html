@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球速体育 · 信息聚合页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f4f6fa;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e1e2a;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1224 0%, #192342 100%);
+            color: #f0f4ff;
+            padding: 72px 24px 64px;
+            border-radius: 0 0 28px 28px;
+            margin: 0 -24px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -10%;
+            width: 120%;
+            height: 80px;
+            background: #f4f6fa;
+            border-radius: 50% 50% 0 0;
+            opacity: 0.08;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            background: linear-gradient(to right, #f7e9b0, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.12rem;
+            color: #b8c7f0;
+            font-weight: 350;
+        }
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 20px;
+            background: rgba(255, 215, 0, 0.15);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #fddf7a;
+            border: 1px solid rgba(255, 215, 0, 0.25);
+        }
+        /* 卡片区域 */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #121826;
+            letter-spacing: -0.01em;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 48px;
+            height: 4px;
+            background: #f2b91c;
+            border-radius: 3px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin: 40px 0 56px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 26px 28px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.25s;
+            border: 1px solid #edf0f7;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(25, 35, 66, 0.08);
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+            color: #1d2f5a;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #0f1729;
+            font-weight: 600;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #3d4258;
+            margin-bottom: 6px;
+        }
+        .card .detail {
+            font-size: 0.88rem;
+            color: #6b7290;
+            border-top: 1px solid #eaedf5;
+            padding-top: 12px;
+            margin-top: 14px;
+        }
+        /* 适合人群 + 链接自然段落 */
+        .audience-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 36px;
+            margin: 24px 0 48px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e8ecf5;
+        }
+        .audience-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px 48px;
+            align-items: flex-start;
+        }
+        .audience-item {
+            flex: 1 1 200px;
+        }
+        .audience-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111b30;
+            margin-bottom: 8px;
+        }
+        .audience-item p {
+            color: #3f4866;
+            font-size: 0.93rem;
+        }
+        .natural-link-paragraph {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid #e2e7f2;
+            font-size: 1rem;
+            color: #222b44;
+        }
+        .natural-link-paragraph a {
+            color: #2465cb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .natural-link-paragraph a:hover {
+            border-bottom-color: #2465cb;
+        }
+        /* FAQ 摘要 */
+        .faq-summary {
+            background: #f0f3fc;
+            border-radius: 20px;
+            padding: 32px 34px;
+            margin: 32px 0 56px;
+        }
+        .faq-item {
+            margin-bottom: 18px;
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 600;
+            color: #121e38;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .faq-a {
+            color: #36405d;
+            font-size: 0.92rem;
+            padding-left: 10px;
+            border-left: 3px solid #cbd5e8;
+        }
+        .faq-a a {
+            color: #2465cb;
+            text-decoration: none;
+            border-bottom: 1px dotted #2465cb;
+        }
+        .faq-a a:hover {
+            border-bottom-style: solid;
+        }
+        /* 提示 */
+        .tip-box {
+            background: #e6edfb;
+            border-radius: 14px;
+            padding: 18px 24px;
+            margin: 36px 0 48px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-left: 5px solid #f2b91c;
+        }
+        .tip-box span {
+            font-size: 1.3rem;
+        }
+        .tip-box p {
+            font-size: 0.95rem;
+            color: #1b253f;
+        }
+        footer {
+            text-align: center;
+            padding: 28px 0 40px;
+            color: #6b728f;
+            font-size: 0.85rem;
+            border-top: 1px solid #dde3ef;
+            margin-top: 20px;
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .card { padding: 24px 18px; }
+            .audience-section { padding: 28px 18px; }
+            .section-title { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>球速体育</h1>
+        <p>赛事信息 · 数据脉络 · 运动场景 —— 围绕体育内容聚合与实用信息索引，为日常关注者提供轻量、清晰的主题入口。</p>
+        <div class="tagline">⚡ 聚焦体育信息场</div>
+    </header>
+
+    <!-- 用途卡片：主视觉 + 功能 -->
+    <section>
+        <h2 class="section-title">实用信息卡片</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="card-icon">📋</span>
+                <h3>赛事速览</h3>
+                <p>覆盖主流联赛与杯赛的近期赛程、实时比分及积分形势。去除冗余信息，保留关键数据节点。</p>
+                <div class="detail">每轮更新 · 结构化对阵</div>
+            </div>
+            <div class="card">
+                <span class="card-icon">📊</span>
+                <h3>数据参考</h3>
+                <p>球队攻防效率、球员出场时间、历史交锋记录等基础统计，便于快速查阅与横向比较。</p>
+                <div class="detail">多维度 · 可对比</div>
+            </div>
+            <div class="card">
+                <span class="card-icon">🧭</span>
+                <h3>内容导航</h3>
+                <p>整合赛事资讯、深度专栏与视频集锦索引，按联赛、球队、时间线分类，节省检索成本。</p>
+                <div class="detail">分类清晰 · 持续收录</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 适合人群 + 自然链接段落 -->
+    <div class="audience-section">
+        <div class="audience-flex">
+            <div class="audience-item">
+                <h4>🏃 日常体育迷</h4>
+                <p>习惯快速获取赛果与动态，希望在碎片时间掌握关键信息，不依赖深度数据平台。</p>
+            </div>
+            <div class="audience-item">
+                <h4>📈 分析爱好者</h4>
+                <p>关注攻防趋势与对阵记录，需要横向对比球队状态，为个人判断提供辅助参考。</p>
+            </div>
+            <div class="audience-item">
+                <h4>🎯 内容消费者</h4>
+                <p>偏好图文、短视频与集锦，希望在一个聚合点找到不同赛事的精选内容入口。</p>
+            </div>
+        </div>
+
+        <!-- 自然链接段落（嵌入句子，不使用“进入/点击/访问”等词汇） -->
+        <div class="natural-link-paragraph">
+            如果你希望更系统化地浏览赛事信息与数据索引，<a href="https://home-qiusu.com">球速体育</a> 整合了近期赛程、球队数据与内容分类，可以作为日常信息锚点。页面结构兼顾速度与可读性，不堆砌无关元素。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-summary">
+        <h3 style="font-weight:600; font-size:1.25rem; margin-bottom:18px; color:#0d1a33;">常见问题摘要</h3>
+        <div class="faq-item">
+            <span class="faq-q">❓ 数据更新频率如何？</span>
+            <div class="faq-a">赛程与比分通常随官方发布同步，统计部分在每个比赛日结束后刷新，误差控制在合理范围。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">❓ 是否覆盖小众赛事？</span>
+            <div class="faq-a">以主流足球、篮球联赛为基础，部分二级联赛与杯赛视数据源覆盖情况收录。具体可在 <a href="https://home-qiusu.com">球速体育</a> 页面内按分类查看。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">❓ 移动端适配如何？</span>
+            <div class="faq-a">页面采用响应式布局，在手机与平板上阅读体验与桌面端一致，交互保持轻量。</div>
+        </div>
+    </div>
+
+    <!-- 提示区域 -->
+    <div class="tip-box">
+        <span>💡</span>
+        <p>页面内所有数据与内容均来自公开信息整合，仅供参考。建议结合多方信源交叉验证，保持理性判断。</p>
+    </div>
+
+    <footer>
+        <p>信息聚合 · 简洁呈现 · 持续优化</p>
+        <p style="margin-top:6px;">© 内容索引 · 非官方数据源</p>
+    </footer>
+</div>
+</body>
+</html>
